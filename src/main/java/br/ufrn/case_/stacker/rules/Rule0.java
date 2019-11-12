@@ -24,27 +24,33 @@
  *
  * stacker
  * br.ufrn.case_.stacker.rules
- * Rule2
- * 08/11/19
+ * Rule0
+ * 11/11/19
  */
 package br.ufrn.case_.stacker.rules;
 
 import br.ufrn.case_.stacker.rules.regex.StackTracesRegex;
 
 /**
- * TODO
+ * Compare two stack traces when they are exactly equals.
+ *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule2 extends Rule{
+public class Rule0 extends Rule{
+
+    String stackTrace;
 
     public boolean verifyRule(String stackTrace1, String stackTrace2){
-        System.out.println("Verify Rule 2");
-        return false;
+        if(stackTrace1 == null || stackTrace2 == null)
+            return false;
+        stackTrace = StackTracesRegex.unify(stackTrace1);
+        return StackTracesRegex.unify(stackTrace1).equals(StackTracesRegex.unify(stackTrace2));
     }
 
     @Override
     public String getStackTrace() {
-        return StackTracesRegex.unify("");
+        return stackTrace;
     }
+
 
 }

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.ufrn.case_.stacker.rules.RuleTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-11-09T01:16:11" hostname="MacBook-Pro-de-Jadson.local" time="0.002">
-  <properties/>
-  <testcase name="testChainOfResponsibility" classname="br.ufrn.case_.stacker.rules.RuleTest" time="0.001"/>
-  <testcase name="testChainOfResponsibility" classname="br.ufrn.case_.stacker.rules.RuleTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

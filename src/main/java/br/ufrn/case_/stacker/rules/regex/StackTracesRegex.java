@@ -23,28 +23,30 @@
  *
  *
  * stacker
- * br.ufrn.case_.stacker.rules
- * Rule2
- * 08/11/19
+ * br.ufrn.case_.stacker.rules.regex
+ * StackTracesRegex
+ * 11/11/19
  */
-package br.ufrn.case_.stacker.rules;
-
-import br.ufrn.case_.stacker.rules.regex.StackTracesRegex;
+package br.ufrn.case_.stacker.rules.regex;
 
 /**
- * TODO
+ * Contains some comum regex
+ *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule2 extends Rule{
+public class StackTracesRegex {
 
-    public boolean verifyRule(String stackTrace1, String stackTrace2){
-        System.out.println("Verify Rule 2");
-        return false;
-    }
-
-    @Override
-    public String getStackTrace() {
-        return StackTracesRegex.unify("");
+    /**
+     * Unify stack traces, remove lines number ans spaces
+     * @param stackTrace
+     * @return
+     */
+    public static String unify(String stackTrace){
+        return stackTrace.trim()
+                .replaceAll(" ", "")
+                .replaceAll("\\n", "")
+                .replaceAll("\\t", "")
+                .replaceAll(":\\d+", "");
     }
 
 }

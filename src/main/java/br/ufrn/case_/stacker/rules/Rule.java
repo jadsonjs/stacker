@@ -77,6 +77,12 @@ public abstract class Rule {
      */
     protected abstract boolean verifyRule(String stackTrace1, String stackTrace2);
 
+    /**
+     * Return the stackTrace simplified use to comparation
+     * @return
+     */
+    public abstract String getStackTrace();
+
     public Rule getNext(){ return next; }
 
 }
