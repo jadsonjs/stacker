@@ -32,8 +32,6 @@ package br.ufrn.case_.stacker.rules;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Test for the rules 0 1, 2 and 3 together
  *
@@ -83,9 +81,26 @@ public class Rule0123Test {
     @Test
     public void isRealStackTracesCorrelated() {
 
-        AbstractStackTranceSimplificationChain chainSimplification = new Rule1(true, "br.ufrn.sigaa").setNext(new Rule0());
+        SimplificationChain chainSimplification = new Rule1(true, "br.ufrn.sigaa").setNext(new Rule0());
 
-        AbstractStackTranceCorrelationChain chainCorrelation = new Rule2().setNext(new Rule3());
+        CorrelationChain chainCorrelation = new Rule2().setNext(new Rule3());
+
+        Assert.assertTrue( chainCorrelation.execute( chainSimplification.execute(output) , chainSimplification.execute(input)  ) );
+
+    }
+
+
+    /**
+     * Verify if two stack traces are correlated. Represents the same error.
+     *
+     * This method has a example how to use this library
+     */
+    @Test
+    public void isRealStackTracesCorrelatedAllPackages() {
+
+        SimplificationChain chainSimplification = new Rule1().setNext(new Rule0());
+
+        CorrelationChain chainCorrelation = new Rule2().setNext(new Rule3());
 
         Assert.assertTrue( chainCorrelation.execute( chainSimplification.execute(output) , chainSimplification.execute(input)  ) );
 

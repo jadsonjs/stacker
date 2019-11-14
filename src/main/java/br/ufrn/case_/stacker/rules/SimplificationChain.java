@@ -34,15 +34,15 @@ package br.ufrn.case_.stacker.rules;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public abstract class AbstractStackTranceSimplificationChain {
+public abstract class SimplificationChain {
 
-    protected AbstractStackTranceSimplificationChain next = null;
+    protected SimplificationChain next = null;
 
     /**
      * create the chain
      * @param rule
      */
-    public final AbstractStackTranceSimplificationChain setNext(AbstractStackTranceSimplificationChain rule) {
+    public final SimplificationChain setNext(SimplificationChain rule) {
         if (next == null) {
             next = rule;
         } else {
@@ -71,7 +71,7 @@ public abstract class AbstractStackTranceSimplificationChain {
      * @param stackTrace
      * @return
      */
-    protected abstract String simplify(String stackTrace);
+    public abstract String simplify(String stackTrace);
 
 
 }

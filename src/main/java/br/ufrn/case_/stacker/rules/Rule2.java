@@ -59,11 +59,11 @@ import java.util.List;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule2 extends AbstractStackTranceCorrelationChain {
+public class Rule2 extends CorrelationChain {
 
 
     @Override
-    protected boolean isCorrelated(String stackTrace1, String stackTrace2) {
+    public boolean isCorrelated(String stackTrace1, String stackTrace2) {
         return isContained(stackTrace1, stackTrace2)
                 || isContained(stackTrace2, stackTrace1);
     }

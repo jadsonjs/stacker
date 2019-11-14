@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'br.ufrn.case'
-version '1.0-SNAPSHOT'
+version '0.9'
 
 sourceCompatibility = 11.0
 

@@ -34,15 +34,15 @@ package br.ufrn.case_.stacker.rules;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public abstract class AbstractStackTranceCorrelationChain {
+public abstract class CorrelationChain {
 
-    protected AbstractStackTranceCorrelationChain next = null;
+    protected CorrelationChain next = null;
 
     /**
      * create the chain
      * @param rule
      */
-    public final AbstractStackTranceCorrelationChain setNext(AbstractStackTranceCorrelationChain rule) {
+    public final CorrelationChain setNext(CorrelationChain rule) {
         if (next == null) {
             next = rule;
         } else {
@@ -74,7 +74,7 @@ public abstract class AbstractStackTranceCorrelationChain {
      * @param stackTrace2
      * @return
      */
-    protected abstract boolean isCorrelated(String stackTrace1, String stackTrace2);
+    public abstract boolean isCorrelated(String stackTrace1, String stackTrace2);
 
 
 }

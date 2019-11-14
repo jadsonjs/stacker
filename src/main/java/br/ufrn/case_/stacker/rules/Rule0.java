@@ -34,10 +34,10 @@ package br.ufrn.case_.stacker.rules;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule0 extends AbstractStackTranceSimplificationChain {
+public class Rule0 extends SimplificationChain {
 
     @Override
-    protected String simplify(String stackTrace) {
+    public String simplify(String stackTrace) {
         return stackTrace
                 .replaceAll("[ ]+", " ")
                 .replaceAll(":\\d+", "");

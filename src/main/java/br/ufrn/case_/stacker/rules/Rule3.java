@@ -58,11 +58,11 @@ package br.ufrn.case_.stacker.rules;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule3 extends AbstractStackTranceCorrelationChain {
+public class Rule3 extends CorrelationChain {
 
 
     @Override
-    protected boolean isCorrelated(String stackTrace1, String stackTrace2) {
+    public boolean isCorrelated(String stackTrace1, String stackTrace2) {
         return isSameTopFrame(stackTrace1, stackTrace2);
     }
 

@@ -55,7 +55,7 @@ import java.util.*;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule1 extends AbstractStackTranceSimplificationChain {
+public class Rule1 extends SimplificationChain {
 
 
     /*
@@ -74,17 +74,24 @@ public class Rule1 extends AbstractStackTranceSimplificationChain {
     /**
      * if we will recovery only caused by lines
      */
-    boolean onlyCausedBy;
+    boolean onlyCausedBy = false;
 
     /**
      * If we will filter lines of specific package
      */
-    String packageFilter;
+    String packageFilter = "";
 
     /**
      * IF the filter by specific package will by applied
      */
     boolean isFilterByPackage = false;
+
+    /**
+     *
+     */
+    public Rule1(){
+
+    }
 
     /**
      *
@@ -99,7 +106,7 @@ public class Rule1 extends AbstractStackTranceSimplificationChain {
     }
 
     @Override
-    protected String simplify(String stackTrace) {
+    public String simplify(String stackTrace) {
         return organizerCauseBy(stackTrace, onlyCausedBy, packageFilter);
     }
 

@@ -52,7 +52,28 @@ Not necessary
 #### From the binary:
 
    Stacker has a binary distribution on **libs/staker.X.Y.Z.jar** directory.
-    
+   
+   Include it on your class path.
+
+### How to run use
+
+```
+       // Execute for a specific rule 
+        
+        String stackTrace =
+                "Exception in thread \"main\" java.lang.NullPointerException\n" +
+                "        at com.example.myproject.Book.getTitle(Book.java:10)\n " +
+                "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n";
+        
+        String result = new Rule0().simplify(stackTrace);
+        
+        // OR several rules in cascade
+        
+        SimplificationChain chainSimplification = new Rule1().setNext(new Rule0());
+
+        String result2 = chainSimplification.execute(stackTrace);
+```
+  
 ### How to run tests
 
 Run the  br.ufrn.case_.stacker.AllUnitTest.java class as a Junit test.   
