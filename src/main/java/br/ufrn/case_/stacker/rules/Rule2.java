@@ -29,22 +29,90 @@
  */
 package br.ufrn.case_.stacker.rules;
 
-import br.ufrn.case_.stacker.rules.regex.StackTracesRegex;
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * TODO
+ *  Compare two stack traces. IF one is contained in the other, return the stack with more steps.
+ *
+ *  Rule2 just works in before it was applied the Rule0 and Rule1
+ *
+ *  Crash type signature correlation comparison.
+ *
+ *  Given two crash types CTa and CTb with Signature Sa and Sb respectively, CTa and CTb are correlated if Sa
+ *  is contained in Sb or Sb is contained in Sa
+ *
+ *  Exception in thread "main" java.lang.NullPointerException
+ *         at com.example.myproject.Book.getTitle(Book.java:16)
+ *         at com.example.myproject.Author.getBookTitles(Author.java:25)
+ *         at com.example.myproject.Bootstrap.main(Bootstrap.java:14)
+ *
+ *  Exception in thread "main" java.lang.NullPointerException
+ *         at com.example.myproject.Author.getBookTitles(Author.java:25)
+ *         at com.example.myproject.Bootstrap.main(Bootstrap.java:14)
+ *
+ * This rule was based on the in the author's understanding of algorithm extract for the paper "
+ * Improving bug management using correlations in crash reports of Shaohua Wang · Foutse Khomh · Ying Zou"
+ * Empir Software Eng (2016) 21:337–367
+ * DOI 10.1007/s10664-014-9333-9
+ *
  * Jadson Santos - jadsonjs@gmail.com
  */
 public class Rule2 extends Rule{
 
-    public boolean verifyRule(String stackTrace1, String stackTrace2){
-        System.out.println("Verify Rule 2");
-        return false;
+    private String stackTraceOther;
+
+    public Rule2( String stackTraceOther){
+        this.stackTraceOther = stackTraceOther;
     }
 
     @Override
-    public String getStackTrace() {
-        return StackTracesRegex.unify("");
+    protected String simplify(String stackTrace) {
+        if( isContained(stackTrace, stackTraceOther) ){
+            return stackTraceOther;
+        }else{
+            return stackTrace;
+        }
     }
+
+
+    /**
+     * verify if one stack trace is contained in another stack trace
+     * @param stackTrace1
+     * @param stackTrace2
+     * @return
+     */
+    private boolean isContained(String stackTrace1, String stackTrace2) {
+
+        List<String> stackTraces1Lines = Arrays.asList(stackTrace1.split("\\n"));
+        List<String> stackTraces2Lines = Arrays.asList(stackTrace2.split("\\n"));
+
+        List<String> comumLines = new ArrayList<>();
+
+        int index1 = 0;
+        int index2 = 0;
+
+        while (index1 < stackTraces1Lines.size()){
+            while (index2 < stackTraces2Lines.size()){
+                if( stackTraces1Lines.get(index1).equals(stackTraces2Lines.get(index2) )  ) {
+                    index1++;
+                    index2++;
+                    comumLines.add(stackTraces1Lines.get(index1));
+                }else{
+                    index2++;
+                }
+            }
+
+            if(index2 >= stackTraces2Lines.size())
+                break;
+        }
+
+        if(comumLines.size() == stackTraces1Lines.size())
+            return true;
+        return false;
+    }
+
 
 }

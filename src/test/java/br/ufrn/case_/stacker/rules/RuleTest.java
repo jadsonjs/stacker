@@ -45,11 +45,12 @@ public class RuleTest {
     @Test
     public void testChainOfResponsibility() {
 
-        Rule chain = new Rule1().setNext(new Rule2()).setNext(new Rule3());
+        Rule chain = new Rule0(false, "").setNext(new Rule1()).setNext(new Rule2("")).setNext(new Rule3());
 
-        Assert.assertEquals("Rule1", chain.getClass().getSimpleName());
-        Assert.assertEquals("Rule2", chain.getNext().getClass().getSimpleName());
-        Assert.assertEquals("Rule3", chain.getNext().getNext().getClass().getSimpleName());
-        Assert.assertNull(chain.getNext().getNext().getNext());
+        Assert.assertEquals("Rule0", chain.getClass().getSimpleName());
+        Assert.assertEquals("Rule1", chain.getNext().getClass().getSimpleName());
+        Assert.assertEquals("Rule2", chain.getNext().getNext().getClass().getSimpleName());
+        Assert.assertEquals("Rule3", chain.getNext().getNext().getNext().getClass().getSimpleName());
+        Assert.assertNull(chain.getNext().getNext().getNext().getNext());
     }
 }

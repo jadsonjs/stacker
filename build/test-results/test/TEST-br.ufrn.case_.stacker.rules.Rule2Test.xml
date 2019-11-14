@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.ufrn.case_.stacker.rules.Rule1Test" tests="1" skipped="0" failures="1" errors="0" timestamp="2019-11-12T01:44:43" hostname="MacBook-Pro-de-Jadson.local" time="0.004">
+<testsuite name="br.ufrn.case_.stacker.rules.Rule2Test" tests="1" skipped="0" failures="1" errors="0" timestamp="2019-11-14T01:07:19" hostname="MacBook-Pro-de-Jadson.local" time="0.003">
   <properties/>
-  <testcase name="testVerifyRule1" classname="br.ufrn.case_.stacker.rules.Rule1Test" time="0.004">
-    <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at br.ufrn.case_.stacker.rules.Rule1Test.testVerifyRule1(Rule1Test.java:51)
+  <testcase name="testVerifyRule1" classname="br.ufrn.case_.stacker.rules.Rule2Test" time="0.003">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;...terException&#10;       [at com.example.myproject.Book.getTitle(Book.java:170)&#10;         at com.example.myproject.Author.getBookTitles(Author.java:25)&#10; ]        at com.examp...&gt; but was:&lt;...terException&#10;       [ at com.example.myproject.Book.getTitle(Book.java:170)&#10;]        at com.examp...&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;...terException
+       [at com.example.myproject.Book.getTitle(Book.java:170)
+         at com.example.myproject.Author.getBookTitles(Author.java:25)
+ ]        at com.examp...&gt; but was:&lt;...terException
+       [ at com.example.myproject.Book.getTitle(Book.java:170)
+]        at com.examp...&gt;
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at br.ufrn.case_.stacker.rules.Rule2Test.testVerifyRule1(Rule2Test.java:51)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -23,30 +23,23 @@
  *
  *
  * stacker
- * br.ufrn.case_.stacker.rules.regex
- * StackTracesRegex
- * 11/11/19
+ * br.ufrn.case_.stacker.rules
+ * Rule3Test
+ * 08/11/19
  */
-package br.ufrn.case_.stacker.rules.regex;
+package br.ufrn.case_.stacker.rules;
+
+import org.junit.Test;
 
 /**
- * Contains some comum regex
- *
+ * TODO
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class StackTracesRegex {
+public class Rule4Test {
 
-    /**
-     * Unify stack traces, remove lines number ans spaces
-     * @param stackTrace
-     * @return
-     */
-    public static String unify(String stackTrace){
-        return stackTrace.trim()
-                .replaceAll(" ", "")
-                .replaceAll("\\n", "")
-                .replaceAll("\\t", "")
-                .replaceAll(":\\d+", "");
+    @Test
+    public void testVerifyRule() {
+
     }
 
 }

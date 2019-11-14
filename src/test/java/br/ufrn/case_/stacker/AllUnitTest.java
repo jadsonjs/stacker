@@ -30,8 +30,6 @@
 package br.ufrn.case_.stacker;
 
 import br.ufrn.case_.stacker.rules.*;
-import br.ufrn.case_.stacker.rules.regex.StackTracesRegexTest;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -40,7 +38,7 @@ import org.junit.runners.Suite;
  * Jadson Santos - jadsonjs@gmail.com
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({RuleTest.class, Rule0Test.class, Rule1Test.class, Rule2Test.class, Rule3Test.class, StackTracesRegexTest.class})
+@Suite.SuiteClasses({RuleTest.class, Rule1Test.class, Rule2Test.class, Rule3Test.class, Rule4Test.class, Rule0Test.class})
 public class AllUnitTest {
 
 }

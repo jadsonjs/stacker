@@ -25,7 +25,7 @@
  * stacker
  * br.ufrn.case_.stacker.rules
  * Rule1Test
- * 08/11/19
+ * 11/11/19
  */
 package br.ufrn.case_.stacker.rules;
 
@@ -34,22 +34,23 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class for Rule1.
+ *
+ * The remove spaces, lines number and tabs in stack traces
+ */
 public class Rule1Test {
 
     String s1 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
             "       at com.example.myproject.Book.getTitle(Book.java:1)\n " +
-            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n " +
-            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n ";
 
-    String s2 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
-            "        at com.example.myproject.Book.getTitle(Book.java:170)\n" +
-            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
+    String s2 = "Exceptioninthread\"main\"java.lang.NullPointerExceptionatcom.example.myproject.Book.getTitle(Book.java)atcom.example.myproject.Author.getBookTitles(Author.java)";
 
     @Test
-    public void testVerifyRule1() {
+    public void testUnify() {
         Rule1 r1 = new Rule1();
-        Assert.assertTrue(r1.verifyRule(s1, s2));
-
-        System.out.println(r1.getStackTrace());
+        Assert.assertEquals(s2, r1.simplify(s1) );
     }
+
 }

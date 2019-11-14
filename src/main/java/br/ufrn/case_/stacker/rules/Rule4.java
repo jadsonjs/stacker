@@ -24,30 +24,19 @@
  *
  * stacker
  * br.ufrn.case_.stacker.rules
- * Rule1Test
- * 08/11/19
+ * Rule4
+ * 13/11/19
  */
 package br.ufrn.case_.stacker.rules;
 
-import org.junit.Assert;
-import org.junit.Test;
+/**
+ * TODO
+ * Jadson Santos - jadsonjs@gmail.com
+ */
+public class Rule4 extends Rule{
 
-import static org.junit.Assert.*;
-
-public class Rule2Test {
-
-    String s1 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
-            "       at com.example.myproject.Book.getTitle(Book.java:170)\n " +
-            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n " +
-            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
-
-    String s2 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
-            "        at com.example.myproject.Book.getTitle(Book.java:170)\n" +
-            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
-
-    @Test
-    public void testVerifyRule2() {
-        Rule2 r2 = new Rule2(s1);
-        Assert.assertEquals(s1, r2.simplify(s2));
+    @Override
+    protected String simplify(String stackTrace) {
+        return null;
     }
 }

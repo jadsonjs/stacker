@@ -24,7 +24,7 @@
  *
  * stacker
  * br.ufrn.case_.stacker.rules
- * Rule3Test
+ * Rule2Test
  * 08/11/19
  */
 package br.ufrn.case_.stacker.rules;

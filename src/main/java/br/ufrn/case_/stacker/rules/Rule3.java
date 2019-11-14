@@ -29,22 +29,15 @@
  */
 package br.ufrn.case_.stacker.rules;
 
-import br.ufrn.case_.stacker.rules.regex.StackTracesRegex;
-
 /**
  * TODO
  * Jadson Santos - jadsonjs@gmail.com
  */
 public class Rule3 extends Rule{
 
-    public boolean verifyRule(String stackTrace1, String stackTrace2){
-        System.out.println("Verify Rule 3");
-        return false;
-    }
-
     @Override
-    public String getStackTrace() {
-        return StackTracesRegex.unify("");
+    protected String simplify(String stackTrace) {
+        return null;
     }
 
 }

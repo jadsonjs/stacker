@@ -54,34 +54,26 @@ public abstract class Rule {
     /**
      * Execute the chain of verifications
      *
-     * @param stackTrace1
-     * @param stackTrace2
+     * @param stackTrace
      * @return
      */
-    public final boolean correlated(String stackTrace1, String stackTrace2){
-        boolean thisCorrelated = this.verifyRule(stackTrace1, stackTrace2); // my verification
-        boolean nextCorrelated = true;
-        if(next != null)
-            nextCorrelated =  next.correlated(stackTrace1, stackTrace2); // next verifications
+    public final String executeSimplification(String stackTrace){
+        String simpleStack = this.simplify(stackTrace); // my verification
+        if(next == null)
+            return simpleStack;
+        else
+            return next.executeSimplification(simpleStack); // next verifications
 
-        // If my verification and next chain verification is correlated, all chain is correlated
-        return thisCorrelated && nextCorrelated;
     }
 
 
     /**
-     * Implements the specific rule verification.
-     * @param stackTrace1
-     * @param stackTrace2
+     * Implements the specific rule simplification.
+     * @param stackTrace
      * @return
      */
-    protected abstract boolean verifyRule(String stackTrace1, String stackTrace2);
+    protected abstract String simplify(String stackTrace);
 
-    /**
-     * Return the stackTrace simplified use to comparation
-     * @return
-     */
-    public abstract String getStackTrace();
 
     public Rule getNext(){ return next; }
 
