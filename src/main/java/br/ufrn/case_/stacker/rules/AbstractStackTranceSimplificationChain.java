@@ -24,22 +24,54 @@
  *
  * stacker
  * br.ufrn.case_.stacker.rules
- * Rule3Test
+ * AbstractRuleChain
  * 08/11/19
  */
 package br.ufrn.case_.stacker.rules;
 
-import org.junit.Test;
-
 /**
- * TODO
+ * This is abstract class to stack trance simplification that implements the pattern Chain of Responsibility
+ *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule4Test {
+public abstract class AbstractStackTranceSimplificationChain {
 
-    @Test
-    public void testVerifyRule() {
+    protected AbstractStackTranceSimplificationChain next = null;
+
+    /**
+     * create the chain
+     * @param rule
+     */
+    public final AbstractStackTranceSimplificationChain setNext(AbstractStackTranceSimplificationChain rule) {
+        if (next == null) {
+            next = rule;
+        } else {
+            next.setNext(rule);
+        }
+        return this;
+    }
+
+    /**
+     * Execute the chain of simplification
+     *
+     * @param stackTrace
+     * @return
+     */
+    public final String execute(String stackTrace){
+        String simpleStack = this.simplify(stackTrace); // my verification
+        if(next == null)
+            return simpleStack;
+        else
+            return next.execute(simpleStack); // next verifications
 
     }
+
+    /**
+     * Implements the specific stack trance simplification.
+     * @param stackTrace
+     * @return
+     */
+    protected abstract String simplify(String stackTrace);
+
 
 }

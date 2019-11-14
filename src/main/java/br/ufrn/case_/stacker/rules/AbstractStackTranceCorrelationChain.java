@@ -24,19 +24,57 @@
  *
  * stacker
  * br.ufrn.case_.stacker.rules
- * Rule4
- * 13/11/19
+ * RuleComparation
+ * 14/11/19
  */
 package br.ufrn.case_.stacker.rules;
 
 /**
- * TODO
+ * Abstract classe to correlate to stack traces
+ *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule4 extends Rule{
+public abstract class AbstractStackTranceCorrelationChain {
 
-    @Override
-    protected String simplify(String stackTrace) {
-        return null;
+    protected AbstractStackTranceCorrelationChain next = null;
+
+    /**
+     * create the chain
+     * @param rule
+     */
+    public final AbstractStackTranceCorrelationChain setNext(AbstractStackTranceCorrelationChain rule) {
+        if (next == null) {
+            next = rule;
+        } else {
+            next.setNext(rule);
+        }
+        return this;
     }
+
+    /**
+     * Execute the chain of simplification
+     *
+     * @param stackTrace1
+     * @param stackTrace2
+     * @return
+     */
+    public final boolean execute(String stackTrace1, String stackTrace2){
+        boolean thisCorrelated = this.isCorrelated(stackTrace1, stackTrace2); // my verification
+        boolean nextCorrelated = true;
+        if(next != null)
+            nextCorrelated =  next.isCorrelated(stackTrace1, stackTrace2); // next verifications
+
+        // If my verification and next chain verification is correlated, all chain is correlated
+        return thisCorrelated && nextCorrelated;
+    }
+
+    /**
+     * Implements the rule to identify is tow stack trance are correlated.
+     * @param stackTrace1
+     * @param stackTrace2
+     * @return
+     */
+    protected abstract boolean isCorrelated(String stackTrace1, String stackTrace2);
+
+
 }

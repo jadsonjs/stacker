@@ -29,15 +29,14 @@
  */
 package br.ufrn.case_.stacker.rules;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- *  Compare two stack traces. IF one is contained in the other, return the stack with more steps.
+ *  Compare two stack traces. IF one is contained in the other
  *
- *  Rule2 just works in before it was applied the Rule0 and Rule1
+ *  Rule2 just works properly if before it was applied simplification using the Rule0 and Rule1
  *
  *  Crash type signature correlation comparison.
  *
@@ -60,23 +59,14 @@ import java.util.List;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule2 extends Rule{
+public class Rule2 extends AbstractStackTranceCorrelationChain {
 
-    private String stackTraceOther;
-
-    public Rule2( String stackTraceOther){
-        this.stackTraceOther = stackTraceOther;
-    }
 
     @Override
-    protected String simplify(String stackTrace) {
-        if( isContained(stackTrace, stackTraceOther) ){
-            return stackTraceOther;
-        }else{
-            return stackTrace;
-        }
+    protected boolean isCorrelated(String stackTrace1, String stackTrace2) {
+        return isContained(stackTrace1, stackTrace2)
+                || isContained(stackTrace2, stackTrace1);
     }
-
 
     /**
      * verify if one stack trace is contained in another stack trace
@@ -89,30 +79,36 @@ public class Rule2 extends Rule{
         List<String> stackTraces1Lines = Arrays.asList(stackTrace1.split("\\n"));
         List<String> stackTraces2Lines = Arrays.asList(stackTrace2.split("\\n"));
 
-        List<String> comumLines = new ArrayList<>();
+        List<String> commonLines = new ArrayList<>();
 
         int index1 = 0;
         int index2 = 0;
 
         while (index1 < stackTraces1Lines.size()){
-            while (index2 < stackTraces2Lines.size()){
-                if( stackTraces1Lines.get(index1).equals(stackTraces2Lines.get(index2) )  ) {
+            index2 = 0;
+
+
+            while (index1 < stackTraces1Lines.size() && index2 < stackTraces2Lines.size()){
+                if( stackTraces1Lines.get(index1).trim().equals(stackTraces2Lines.get(index2).trim() )  ) {
+                    commonLines.add(stackTraces1Lines.get(index1));
                     index1++;
                     index2++;
-                    comumLines.add(stackTraces1Lines.get(index1));
                 }else{
                     index2++;
                 }
             }
 
-            if(index2 >= stackTraces2Lines.size())
-                break;
+            index1++;
+
         }
 
-        if(comumLines.size() == stackTraces1Lines.size())
+        // all lines of stackTraces1 in present int stackTraces2 and the stack trace have at least then 2 lines
+        if(commonLines.size() == stackTraces1Lines.size() && commonLines.size() >= 2)
             return true;
+
         return false;
     }
+
 
 
 }

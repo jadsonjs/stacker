@@ -37,17 +37,33 @@ import static org.junit.Assert.*;
 public class Rule2Test {
 
     String s1 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
-            "       at com.example.myproject.Book.getTitle(Book.java:170)\n " +
-            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n " +
+            "        at com.example.myproject.Book.getTitle(Book.java:170)\n " +
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n" +
             "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
 
     String s2 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
             "        at com.example.myproject.Book.getTitle(Book.java:170)\n" +
             "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
 
+    String s3 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
+            "        at com.example.myproject.Book.getTitle(Book.java:170)\n " +
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n " +
+            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
+
+    String s4 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
+            "        at com.example.myproject.Book.getTitle2(Book.java:170)\n" +
+            "        at com.example.myproject.Author.getBookPages(Author.java:25)\n " +
+            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
+
     @Test
-    public void testVerifyRule2() {
-        Rule2 r2 = new Rule2(s1);
-        Assert.assertEquals(s1, r2.simplify(s2));
+    public void testVerifyCorrelation() {
+        Rule2 r2 = new Rule2();
+        Assert.assertTrue(r2.isCorrelated(s1, s2));
+    }
+
+    @Test
+    public void testVerifyNotCorrelation() {
+        Rule2 r2 = new Rule2();
+        Assert.assertFalse(r2.isCorrelated(s3, s4));
     }
 }

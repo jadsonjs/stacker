@@ -24,7 +24,7 @@
  *
  * stacker
  * br.ufrn.case_.stacker.rules
- * Rule1Test
+ * Rule0Test
  * 11/11/19
  */
 package br.ufrn.case_.stacker.rules;
@@ -32,25 +32,98 @@ package br.ufrn.case_.stacker.rules;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
- * Test class for Rule1.
- *
- * The remove spaces, lines number and tabs in stack traces
+ * Test for Rule0.  that organizer the "caused by" and remove lines not necessary.
  */
 public class Rule1Test {
 
-    String s1 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
-            "       at com.example.myproject.Book.getTitle(Book.java:1)\n " +
-            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n ";
+    String inputStackTrace =
+            "javax.servlet.servletexception: #{ matriculagraduacao.telainstrucoes}: java.lang.nullpointerexception" +
+            "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+            "\n\t... 52 more" +
+            "\ncaused by: java.lang.nullpointerexception" + // top frame is here
+            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+            "\n\t... 53 more";
 
-    String s2 = "Exceptioninthread\"main\"java.lang.NullPointerExceptionatcom.example.myproject.Book.getTitle(Book.java)atcom.example.myproject.Author.getBookTitles(Author.java)";
+    String outStackTrace =
+            "caused by: java.lang.nullpointerexception" + // top frame is here
+            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+            "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+            "\njavax.servlet.servletexception: #{ matriculagraduacao.telainstrucoes}: java.lang.nullpointerexception"+
+            "\n";
 
+    String outStackTraceOnlyCauseBy =
+            "caused by: java.lang.nullpointerexception" + // top frame is here
+            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+            "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+            "\n";
+
+    String inputStackTracePackageFilter =
+            "javax.servlet.servletexception: #{ matriculagraduacao.telainstrucoes}: java.lang.nullpointerexception" +
+            "\n\tat javax.faces.webapp.facesservlet.service(facesservlet.java:277)"+
+            "\n\tat org.apache.catalina.core.applicationfilterchain.internaldofilter(applicationfilterchain.java:290)"+
+             "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+             "\n\t... 52 more" +
+             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
+             "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+             "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
+             "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
+             "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
+            "\n\t... 53 more";
+
+
+    String outStackTracePackageFilter =
+            "caused by: java.lang.nullpointerexception" + // top frame is here
+                    "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+                    "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
+                    "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+                    "\njavax.servlet.servletexception: #{ matriculagraduacao.telainstrucoes}: java.lang.nullpointerexception"+
+                    "\n";
+
+
+    String outStackTracePackageFilter2 =
+            "caused by: java.lang.nullpointerexception" + // top frame is here
+                    "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+                    "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
+                    "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
+                    "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
+                    "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+                    "\njavax.servlet.servletexception: #{ matriculagraduacao.telainstrucoes}: java.lang.nullpointerexception"+
+                    "\n\tat javax.faces.webapp.facesservlet.service(facesservlet.java:277)"+
+                    "\n\tat org.apache.catalina.core.applicationfilterchain.internaldofilter(applicationfilterchain.java:290)"+
+                    "\n";
+
+    /**
+     * Test organization of stack trace eliminating not important information
+     */
     @Test
-    public void testUnify() {
-        Rule1 r1 = new Rule1();
-        Assert.assertEquals(s2, r1.simplify(s1) );
+    public void testPutCauseByDirectOrder() {
+        Assert.assertEquals(outStackTrace, new Rule1(false, "").simplify(inputStackTrace));
     }
 
+    /**
+     * Test organization of stack trace eliminating information not present in caused by.
+     */
+    @Test
+    public void testReturnOnlyCauseByDirectOrder() {
+        Assert.assertEquals(outStackTraceOnlyCauseBy, new Rule1(true, "").simplify(inputStackTrace));
+    }
+
+    /**
+     * Test return only br.ufrn.sigaa packages
+     */
+    @Test
+    public void testPackageFilter() {
+        Assert.assertEquals(outStackTracePackageFilter,
+                new Rule1(false, "br.ufrn.sigaa").simplify(inputStackTracePackageFilter));
+    }
+
+    /**
+     * Test return only br.ufrn.sigaa packages
+     */
+    @Test
+    public void testPackageFilter2() {
+        Assert.assertEquals(outStackTracePackageFilter2,
+                new Rule1(false, "").simplify(inputStackTracePackageFilter));
+    }
 }

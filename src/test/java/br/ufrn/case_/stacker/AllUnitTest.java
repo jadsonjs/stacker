@@ -38,7 +38,7 @@ import org.junit.runners.Suite;
  * Jadson Santos - jadsonjs@gmail.com
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({RuleTest.class, Rule1Test.class, Rule2Test.class, Rule3Test.class, Rule4Test.class, Rule0Test.class})
+@Suite.SuiteClasses({Rule0Test.class, Rule1Test.class, Rule2Test.class, Rule3Test.class, Rule0123Test.class})
 public class AllUnitTest {
 
 }
