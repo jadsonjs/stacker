@@ -56,11 +56,11 @@ Not necessary
 
    Stacker has a binary distribution on **libs/staker.X.Y.jar** directory.
    
-   Include it on your class path.
+   Include it on your classpath.
 
-### How to run use
+### How to use
 
-```
+
        // Execute for a specific rule 
         
         String stackTrace =
@@ -75,7 +75,7 @@ Not necessary
         SimplificationChain chainSimplification = new Rule1().setNext(new Rule0());
 
         String result2 = chainSimplification.execute(stackTrace);
-```
+
   
 ### How to run tests
 
