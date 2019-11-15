@@ -20,20 +20,38 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ *
+ * stacker
+ * br.ufrn.case_.stacker.rules
+ * Rule2Test
+ * 15/11/19
  */
-plugins {
-    id 'java'
-}
+package br.ufrn.case_.stacker.rules;
 
-group 'br.ufrn.case'
-version '1.0'
+import org.junit.Assert;
+import org.junit.Test;
 
-sourceCompatibility = 11.0
+/**
+ * Test for Rule 2
+ * Jadson Santos - jadsonjs@gmail.com
+ */
+public class Rule4Test {
 
-repositories {
-    mavenCentral()
-}
+    String s1 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
+            "        at com.example.myproject.Book.getTitle(Book.java:170)\n " +
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n" +
+            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    String s2 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
+            "        at com.example.myproject.Book.getTitle(Book.java:170)\n " +
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n" +
+            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
+
+    @Test
+    public void testVerifyCorrelation() {
+        Rule4 r2 = new Rule4();
+        Assert.assertTrue(r2.isCorrelated(s1, s2));
+    }
+
 }

@@ -20,20 +20,27 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ *
+ * stacker
+ * br.ufrn.case_.stacker.rules
+ * Rule2
+ * 15/11/19
  */
-plugins {
-    id 'java'
-}
+package br.ufrn.case_.stacker.rules;
 
-group 'br.ufrn.case'
-version '1.0'
+/**
+ * Simple correlation that verify if the stack traces are exactly the same.
+ *
+ * *** This is the rule most restrictive of all ***
+ *
+ * Jadson Santos - jadsonjs@gmail.com
+ */
+public class Rule4 extends CorrelationChain {
 
-sourceCompatibility = 11.0
+    @Override
+    public boolean isCorrelated(String stackTrace1, String stackTrace2) {
+        return stackTrace1.equals(stackTrace2);
+    }
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }

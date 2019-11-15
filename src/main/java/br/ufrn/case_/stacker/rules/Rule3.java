@@ -29,6 +29,9 @@
  */
 package br.ufrn.case_.stacker.rules;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Compare two stack traces. IF top line of stack trace are the same.
  *
@@ -73,7 +76,69 @@ public class Rule3 extends CorrelationChain {
      * @return
      */
     private boolean isSameTopFrame(String stackTrace1, String stackTrace2) {
-        return true;
+
+        List<String> stackTraces1Lines = Arrays.asList(stackTrace1.split("\\n"));
+        List<String> stackTraces2Lines = Arrays.asList(stackTrace2.split("\\n"));
+
+        if(stackTraces1Lines.size() >=2  && stackTraces2Lines.size() >=2 ){
+
+            /**
+             * find the first Line that contains "caused by" or "Exception in thread"
+             */
+            String firstLine1 = "";
+            int i = 0;
+            for(; i < stackTraces1Lines.size() ; i++) {
+                firstLine1 = stackTraces1Lines.get(i);
+                if(firstLine1.contains("caused by") || firstLine1.contains("Exception in thread")){
+                    break;
+                }
+            }
+            String firstLine2 = "";
+            int j = 0;
+            for(; j < stackTraces2Lines.size() ; j++) {
+                firstLine2 = stackTraces2Lines.get(j);
+                if(firstLine2.contains("caused by") ||  firstLine2.contains("Exception in thread")){
+                    break;
+                }
+            }
+
+            /**
+             * find the second Line that contains "at" AND "java.xxx.xxx(....)"
+             */
+            String secondLine1 = "";
+            for(; i < stackTraces1Lines.size() ; i++) {
+                secondLine1 = stackTraces1Lines.get(i);
+                if(secondLine1.contains("at") && secondLine1.contains("(")){
+                    break;
+                }
+            }
+            String secondLine2 = "";
+            for(; j < stackTraces1Lines.size() ; j++) {
+                secondLine2 = stackTraces2Lines.get(j);
+                if(secondLine2.contains("at") && secondLine2.contains("(")){
+                    break;
+                }
+            }
+
+            if(  firstLine1.equals(firstLine2)  )  {
+
+                /*
+                 * if line = at com.example.myproject.Book.getTitle(Book.java:170)
+                 * file name = at com.example.myproject.Book.getTitle
+                 */
+                String fileName1 = secondLine1.substring(0, secondLine1.indexOf("("));
+                String fileName2 = secondLine2.substring(0, secondLine2.indexOf("("));
+
+                if(fileName1.equals(fileName2)) {
+                    return true;
+                }else{
+                    System.out.println("not equals");
+                }
+            }
+
+        }
+
+        return false;
     }
 
 }

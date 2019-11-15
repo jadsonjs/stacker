@@ -32,8 +32,6 @@ package br.ufrn.case_.stacker.rules;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class Rule2Test {
 
     String s1 = "Exception in thread \"main\" java.lang.NullPointerException\n" +

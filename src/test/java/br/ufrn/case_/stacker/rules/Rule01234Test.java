@@ -24,28 +24,43 @@
  *
  * stacker
  * br.ufrn.case_.stacker.rules
- * AllUnitTest
- * 08/11/19
+ * Rule01234Test
+ * 15/11/19
  */
-package br.ufrn.case_.stacker;
+package br.ufrn.case_.stacker.rules;
 
-import br.ufrn.case_.stacker.rules.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Execute all tests of library
+ * Test all rules
  * Jadson Santos - jadsonjs@gmail.com
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-        Rule0Test.class,
-        Rule1Test.class,
-        Rule2Test.class,
-        Rule3Test.class,
-        Rule4Test.class,
-        Rule0123Test.class,
-        Rule01234Test.class})
-public class AllUnitTest {
+public class Rule01234Test {
+
+    String s1 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
+            "        at com.example.myproject.Book.getTitle(Book.java:170)\n " +
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n" +
+            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
+
+    String s2 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
+            "        at com.example.myproject.Book.getTitle(Book.java:170)\n " +
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n" +
+            "        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)";
+
+
+    /**
+     * just for test that when the stack traces are exactly identical, all rule are match
+     */
+    @Test
+    public void testAllRules() {
+
+        SimplificationChain chainSimplification = new Rule1().setNext(new Rule0());
+
+        CorrelationChain chainCorrelation = new Rule2().setNext(new Rule3()).setNext(new Rule4());
+
+        Assert.assertTrue( chainCorrelation.execute( chainSimplification.execute(s1) , chainSimplification.execute(s2)  ) );
+
+    }
 
 }

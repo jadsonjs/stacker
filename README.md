@@ -1,4 +1,4 @@
-# stacker
+# Stacker
 
 Stacker is library to compare correlated Java Stack Traces
 
@@ -37,7 +37,7 @@ DOI 10.1007/s10664-014-9333-9
  
 ### Dependencies
 
-Not applicable
+Junit 4.12
    
 ### Database configuration
 
@@ -47,11 +47,11 @@ Not necessary
 
 #### From the source code:
 
-   Clone the project. -> Run ```gradlew build``` command.
+   Clone the project -> Import it as a gradle project on your IDE.
 
 #### From the binary:
 
-   Stacker has a binary distribution on **libs/staker.X.Y.Z.jar** directory.
+   Stacker has a binary distribution on **libs/staker.X.Y.jar** directory.
    
    Include it on your class path.
 
@@ -76,7 +76,9 @@ Not necessary
   
 ### How to run tests
 
-Run the  br.ufrn.case_.stacker.AllUnitTest.java class as a Junit test.   
+ Run the  br.ufrn.case_.stacker.AllUnitTest.java class as a Junit test.   
+ 
+ Or
 
  Run ```gradlew test``` command. 
     
