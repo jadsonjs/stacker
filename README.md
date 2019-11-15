@@ -2,7 +2,10 @@
 
 Stacker is library to compare correlated Java Stack Traces
 
-![alt text](https://github.com/jadsonjs/stacker/blob/master/src/main/resources/stacker.png)
+<div style="width:50%; margin-right:auto; margin-left:auto;">
+   <img width="250" height="250" src="https://github.com/jadsonjs/stacker/blob/master/src/main/resources/stacker.png">
+</div>
+
 
 This library tries to identify if two Stack Traces were launched by the 
 same error, or represents the same error, although Stack traces 
