@@ -20,20 +20,46 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ *
+ * stacker
+ * br.ufrn.case_.stacker.rules
+ * StringUtils
+ * 17/11/19
  */
-plugins {
-    id 'java'
-}
+package br.ufrn.case_.stacker.util;
 
-group 'br.ufrn.case'
-version '1.2'
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-sourceCompatibility = 11.0
+/**
+ * Split a text by END LINE character
+ *
+ * Jadson Santos - jadsonjs@gmail.com
+ */
+public class TextProcessor {
 
-repositories {
-    mavenCentral()
-}
+    /**
+     * Split a text by '\n' character
+     *
+     * @param inputStackTrace
+     * @return
+     */
+    public  static List<String> slipByEndLine(String inputStackTrace) {
+        List<String> lines = new ArrayList<>();
+        if(inputStackTrace == null || inputStackTrace.trim().isEmpty())
+            return lines;
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+        if(inputStackTrace.contains("\\n"))
+            lines = Arrays.asList(inputStackTrace.split("\\n"));
+        else {
+            if (inputStackTrace.contains("\n"))
+                lines = Arrays.asList(inputStackTrace.split("\n"));
+            else
+                lines = Arrays.asList(inputStackTrace.split("\r"));
+        }
+        return lines;
+    }
+
 }

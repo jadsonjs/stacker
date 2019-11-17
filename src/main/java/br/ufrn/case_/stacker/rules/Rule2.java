@@ -29,8 +29,9 @@
  */
 package br.ufrn.case_.stacker.rules;
 
+import br.ufrn.case_.stacker.util.TextProcessor;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -76,8 +77,8 @@ public class Rule2 extends CorrelationChain {
      */
     private boolean isContained(String stackTrace1, String stackTrace2) {
 
-        List<String> stackTraces1Lines = Arrays.asList(stackTrace1.split("\\n"));
-        List<String> stackTraces2Lines = Arrays.asList(stackTrace2.split("\\n"));
+        List<String> stackTraces1Lines = TextProcessor.slipByEndLine(stackTrace1);
+        List<String> stackTraces2Lines = TextProcessor.slipByEndLine(stackTrace2);
 
         List<String> commonLines = new ArrayList<>();
 

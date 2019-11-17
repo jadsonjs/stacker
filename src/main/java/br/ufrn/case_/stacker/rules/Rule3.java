@@ -29,7 +29,8 @@
  */
 package br.ufrn.case_.stacker.rules;
 
-import java.util.Arrays;
+import br.ufrn.case_.stacker.util.TextProcessor;
+
 import java.util.List;
 
 /**
@@ -77,8 +78,8 @@ public class Rule3 extends CorrelationChain {
      */
     private boolean isSameTopFrame(String stackTrace1, String stackTrace2) {
 
-        List<String> stackTraces1Lines = Arrays.asList(stackTrace1.split("\\n"));
-        List<String> stackTraces2Lines = Arrays.asList(stackTrace2.split("\\n"));
+        List<String> stackTraces1Lines = TextProcessor.slipByEndLine(stackTrace1);
+        List<String> stackTraces2Lines = TextProcessor.slipByEndLine(stackTrace2);
 
         if(stackTraces1Lines.size() >=2  && stackTraces2Lines.size() >=2 ){
 

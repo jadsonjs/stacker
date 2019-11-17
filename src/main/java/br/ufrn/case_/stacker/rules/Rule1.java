@@ -29,6 +29,8 @@
  */
 package br.ufrn.case_.stacker.rules;
 
+import br.ufrn.case_.stacker.util.TextProcessor;
+
 import java.util.*;
 
 /**
@@ -120,7 +122,7 @@ public class Rule1 extends SimplificationChain {
     private String organizerCauseBy(String inputStackTrace, boolean onlyCausedBy, String packageFilter) {
 
         // slip the stack traces by line
-        List<String> lines = Arrays.asList(inputStackTrace.split("\n"));
+        List<String> lines = TextProcessor.slipByEndLine(inputStackTrace);
 
         /* Keep the cause by lines separated */
         Map<Integer, List<String>> causedMap = new HashMap<>();
@@ -174,6 +176,8 @@ public class Rule1 extends SimplificationChain {
 
         return sb.toString();
     }
+
+
 
     /**
      * Select the lines of stack trace that contains a specific java package
