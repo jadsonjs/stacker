@@ -132,8 +132,6 @@ public class Rule3 extends CorrelationChain {
 
                 if(fileName1.equals(fileName2)) {
                     return true;
-                }else{
-                    System.out.println("not equals");
                 }
             }
 
