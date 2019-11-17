@@ -51,13 +51,13 @@ public class TextProcessor {
         if(inputStackTrace == null || inputStackTrace.trim().isEmpty())
             return lines;
 
-        if(inputStackTrace.contains("\\n"))
-            lines = Arrays.asList(inputStackTrace.split("\\n"));
+        if(inputStackTrace.contains("\\\\n"))
+            lines = Arrays.asList(inputStackTrace.split("\\\\n"));
         else {
-            if (inputStackTrace.contains("\n"))
-                lines = Arrays.asList(inputStackTrace.split("\n"));
+            if (inputStackTrace.contains("\\n"))
+                lines = Arrays.asList(inputStackTrace.split("\\n"));
             else
-                lines = Arrays.asList(inputStackTrace.split("\r"));
+                lines = Arrays.asList(inputStackTrace.split("\n"));
         }
         return lines;
     }
