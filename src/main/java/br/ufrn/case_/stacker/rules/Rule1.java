@@ -62,7 +62,7 @@ public class Rule1 extends SimplificationChain {
      * find string that starts with: "... 53 more"
      * start with * ... space "n digits" space "more"
      */
-    final static String REGEX_STACK_TRACE_MORE = "^.*\\.\\.\\.+\\s\\d+\\smore";
+    final static String REGEX_STACK_TRACE_MORE = "^.*\\.\\.\\.+\\s\\d+\\smore.*";
 
     /**
      * find the sring that starts with: \n\tat org.apache.catalina.core.

@@ -45,7 +45,7 @@ public class Rule0123Test {
                     "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
                     "\n\t... 52 more" +
                     "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-                    "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+                    "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
                     "\n\t... 53 more";
 
     String output =
@@ -66,8 +66,8 @@ public class Rule0123Test {
             "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception"+
                     "\n\t... 52 more" +
                     "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-                    "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
-                    "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
+                    "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
+                    "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
                     "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
                     "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
                     "\n\t... 53 more";
@@ -81,7 +81,7 @@ public class Rule0123Test {
     @Test
     public void isRealStackTracesCorrelated() {
 
-        SimplificationChain chainSimplification = new Rule1(true, "br.ufrn.sigaa").setNext(new Rule0());
+        SimplificationChain chainSimplification = new Rule1(true, "br.com.system").setNext(new Rule0());
 
         CorrelationChain chainCorrelation = new Rule2().setNext(new Rule3());
 

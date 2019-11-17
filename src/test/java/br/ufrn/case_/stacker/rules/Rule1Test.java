@@ -42,19 +42,19 @@ public class Rule1Test {
             "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
             "\n\t... 52 more" +
             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
             "\n\t... 53 more";
 
     String outStackTrace =
             "caused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
             "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
             "\njavax.servlet.servletexception: #{ matriculagraduacao.telainstrucoes}: java.lang.nullpointerexception"+
             "\n";
 
     String outStackTraceOnlyCauseBy =
             "caused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
             "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
             "\n";
 
@@ -65,8 +65,8 @@ public class Rule1Test {
              "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
              "\n\t... 52 more" +
              "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-             "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
-             "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
+             "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+             "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
              "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
              "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
             "\n\t... 53 more";
@@ -74,8 +74,8 @@ public class Rule1Test {
 
     String outStackTracePackageFilter =
             "caused by: java.lang.nullpointerexception" + // top frame is here
-                    "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
-                    "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
+                    "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+                    "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
                     "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
                     "\njavax.servlet.servletexception: #{ matriculagraduacao.telainstrucoes}: java.lang.nullpointerexception"+
                     "\n";
@@ -83,8 +83,8 @@ public class Rule1Test {
 
     String outStackTracePackageFilter2 =
             "caused by: java.lang.nullpointerexception" + // top frame is here
-                    "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
-                    "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
+                    "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+                    "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1951)" +
                     "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
                     "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
                     "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
@@ -110,16 +110,16 @@ public class Rule1Test {
     }
 
     /**
-     * Test return only br.ufrn.sigaa packages
+     * Test return only br.com.system packages
      */
     @Test
     public void testPackageFilter() {
         Assert.assertEquals(outStackTracePackageFilter,
-                new Rule1(false, "br.ufrn.sigaa").simplify(inputStackTracePackageFilter));
+                new Rule1(false, "br.com.system").simplify(inputStackTracePackageFilter));
     }
 
     /**
-     * Test return only br.ufrn.sigaa packages
+     * Test return only br.com.system packages
      */
     @Test
     public void testPackageFilter2() {

@@ -50,8 +50,8 @@ public class Rule3Test {
     String r1 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception"+
             "\n\t... 52 more" +
             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
-            "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
+            "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
             "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
             "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
             "\n\t... 53 more";
@@ -59,15 +59,15 @@ public class Rule3Test {
     String r2 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception"+
             "\n\t... 52 more" +
             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
-            "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telaCadastroAluno(matriculagraduacaombean.java:1982)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
+            "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telaCadastroAluno(matriculagraduacaombean.java:1982)" +
             "\n\t... 53 more";
 
     String e1 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception"+
             "\n\t... 52 more" +
             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
-            "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
+            "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
             "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
             "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
             "\n\t... 53 more";
@@ -75,15 +75,15 @@ public class Rule3Test {
     String e2 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.illegalargumentexception"+
             "\n\t... 52 more" +
             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
-            "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telaCadastroAluno(matriculagraduacaombean.java:1982)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
+            "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telaCadastroAluno(matriculagraduacaombean.java:1982)" +
             "\n\t... 53 more";
 
     String e3 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception"+
             "\n\t... 52 more" +
             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
-            "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
+            "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
             "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
             "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)" +
             "\n\t... 53 more";
@@ -91,8 +91,8 @@ public class Rule3Test {
     String e4 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception"+
             "\n\t... 52 more" +
             "\ncaused by: java.lang.nullpointerexception" + // top frame is here
-            "\n\tat br.ufrn.sigaa.ensino.tecnico.dao.turmaentradatecnicodao.findgeral(turmaentradatecnicodao.java:2037)" +
-            "\n\tat br.ufrn.sigaa.ensino.graduacao.jsf.matriculagraduacaombean.telaCadastroAluno(matriculagraduacaombean.java:1982)" +
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findgeral(turmaentradatecnicodao.java:2037)" +
+            "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telaCadastroAluno(matriculagraduacaombean.java:1982)" +
             "\n\t... 53 more";
 
     @Test
