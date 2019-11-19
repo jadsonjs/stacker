@@ -40,7 +40,8 @@ public class Rule0 extends SimplificationChain {
     public String simplify(String stackTrace) {
         return stackTrace
                 .replaceAll("[ ]+", " ")
-                .replaceAll(":\\d+", "");
+                .replaceAll(":\\d+", "")
+                .replaceAll("\\d+", "");
     }
 
 

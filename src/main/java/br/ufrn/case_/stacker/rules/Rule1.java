@@ -84,9 +84,19 @@ public class Rule1 extends SimplificationChain {
     String packageFilter = "";
 
     /**
+     * If we will exclude some package
+     */
+    String packageExclude = "";
+
+    /**
      * IF the filter by specific package will by applied
      */
     boolean isFilterByPackage = false;
+
+    /**
+     * IF the filter by specific package will by applied
+     */
+    boolean isExcludingPackage = false;
 
     /**
      *
@@ -105,6 +115,20 @@ public class Rule1 extends SimplificationChain {
         this.packageFilter = packageFilter;
 
         this.isFilterByPackage = packageFilter != null && ! packageFilter.trim().isEmpty();
+    }
+
+    /**
+     *
+     * @param onlyCausedBy
+     * @param packageFilter
+     */
+    public Rule1(boolean onlyCausedBy, String packageFilter, String packageExclude){
+        this.onlyCausedBy = onlyCausedBy;
+        this.packageFilter = packageFilter;
+        this.packageExclude = packageExclude;
+
+        this.isFilterByPackage = packageFilter != null && ! packageFilter.trim().isEmpty();
+        this.isExcludingPackage = packageExclude != null && ! packageExclude.trim().isEmpty();
     }
 
     @Override
@@ -145,13 +169,13 @@ public class Rule1 extends SimplificationChain {
 
             if(causedCount > 0){
                 if( openCauseBy ){
-                    applyPackageFilter(packageFilter, tempLines, line);
+                    applyPackageFilter(tempLines, line);
                 }else{
                     causedMap.put(causedCount, tempLines);
                     tempLines = new ArrayList<>();
                 }
             }else{
-                applyPackageFilter(packageFilter, normalLines, line);
+                applyPackageFilter(normalLines, line);
 
             }
         }
@@ -181,17 +205,27 @@ public class Rule1 extends SimplificationChain {
 
     /**
      * Select the lines of stack trace that contains a specific java package
-     * @param packageFilter
      * @param lines
      * @param line
      */
-    private void applyPackageFilter(String packageFilter, List<String> lines, String line) {
-        if (this.isFilterByPackage) {
-            if (line.matches(REGEX_STACK_TRACE_AT)) {
-                if (line.contains(packageFilter))
+    private void applyPackageFilter(List<String> lines, String line) {
+        if (line.matches(REGEX_STACK_TRACE_AT)) {
+
+            if (this.isExcludingPackage){
+                if (line.contains(packageExclude)) {
+                    return;
+                }
+            }
+
+            if (this.isFilterByPackage) {
+                if (line.contains(packageFilter)) {
                     lines.add(line);
-            }else
-                lines.add(line);
+                }
+                return;
+            }
+
+            lines.add(line);
+
         } else {
             lines.add(line);
         }

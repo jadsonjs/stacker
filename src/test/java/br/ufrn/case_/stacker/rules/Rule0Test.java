@@ -47,10 +47,62 @@ public class Rule0Test {
             " at com.example.myproject.Book.getTitle(Book.java)\n" +
             " at com.example.myproject.Author.getBookTitles(Author.java)\n";
 
+    String s3 = "caused by: java.lang.nullpointerexception\n" +
+            "\tat br.ufrn.sigaa.ava.jsf.permissaoavambean.precisarecarregarpermissao(permissaoavambean.java)\n" +
+            "\tat br.ufrn.sigaa.ava.jsf.permissaoavambean.getpermissaousuario(permissaoavambean.java)\n" +
+            "\tat sun.reflect.generatedmethodaccessor2247.invoke(unknown source)\n" +
+            "\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java)\n" +
+            "\tat java.lang.reflect.method.invoke(method.java)\n" +
+            "\tat javax.el.beanelresolver.getvalue(beanelresolver.java)\n" +
+            "caused by: javax.el.elexception: error reading 'permissaousuario' on type br.ufrn.sigaa.ava.jsf.permissaoavambean\n" +
+            "\tat javax.el.beanelresolver.getvalue(beanelresolver.java)\n" +
+            "\tat javax.el.compositeelresolver.getvalue(compositeelresolver.java)\n" +
+            "\tat org.apache.el.parser.astvalue.getvalue(astvalue.java)\n" +
+            "\tat org.apache.el.parser.astor.getvalue(astor.java)\n" +
+            "\tat org.apache.el.valueexpressionimpl.getvalue(valueexpressionimpl.java)\n" +
+            "\tat org.apache.jasper.runtime.pagecontextimpl.proprietaryevaluate(pagecontextimpl.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_c_005fif_005f17(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_c_005fwhen_005f3(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_c_005fchoose_005f3(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_h_005fform_005f0(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspservice(turma_jsp.java)\n" +
+            "\tat org.apache.jasper.runtime.httpjspbase.service(httpjspbase.java)\n" +
+            "\tat javax.servlet.http.httpservlet.service(httpservlet.java)\n" +
+            "\tat org.apache.jasper.servlet.jspservletwrapper.service(jspservletwrapper.java)\n";
+
+    String s4 = "caused by: java.lang.nullpointerexception\n" +
+            "\tat br.ufrn.sigaa.ava.jsf.permissaoavambean.precisarecarregarpermissao(permissaoavambean.java)\n" +
+            "\tat br.ufrn.sigaa.ava.jsf.permissaoavambean.getpermissaousuario(permissaoavambean.java)\n" +
+            "\tat sun.reflect.generatedmethodaccessor.invoke(unknown source)\n" +
+            "\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java)\n" +
+            "\tat java.lang.reflect.method.invoke(method.java)\n" +
+            "\tat javax.el.beanelresolver.getvalue(beanelresolver.java)\n" +
+            "caused by: javax.el.elexception: error reading 'permissaousuario' on type br.ufrn.sigaa.ava.jsf.permissaoavambean\n" +
+            "\tat javax.el.beanelresolver.getvalue(beanelresolver.java)\n" +
+            "\tat javax.el.compositeelresolver.getvalue(compositeelresolver.java)\n" +
+            "\tat org.apache.el.parser.astvalue.getvalue(astvalue.java)\n" +
+            "\tat org.apache.el.parser.astor.getvalue(astor.java)\n" +
+            "\tat org.apache.el.valueexpressionimpl.getvalue(valueexpressionimpl.java)\n" +
+            "\tat org.apache.jasper.runtime.pagecontextimpl.proprietaryevaluate(pagecontextimpl.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_c_fif_f(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_c_fwhen_f(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_c_fchoose_f(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspx_meth_h_fform_f(turma_jsp.java)\n" +
+            "\tat org.apache.jsp.public_.docente.turma_jsp._jspservice(turma_jsp.java)\n" +
+            "\tat org.apache.jasper.runtime.httpjspbase.service(httpjspbase.java)\n" +
+            "\tat javax.servlet.http.httpservlet.service(httpservlet.java)\n" +
+            "\tat org.apache.jasper.servlet.jspservletwrapper.service(jspservletwrapper.java)\n";
+
     @Test
     public void testSimplification() {
         Rule0 r0 = new Rule0();
         Assert.assertEquals(s2, r0.simplify(s1) );
+    }
+
+    @Test
+    public void testSimplification2() {
+        Rule0 r0 = new Rule0();
+        Assert.assertEquals(s4, r0.simplify(s3) );
     }
 
 }
