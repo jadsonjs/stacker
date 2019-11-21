@@ -71,7 +71,7 @@ public class Rule3 extends CorrelationChain {
     }
 
     /**
-     * TODO not implemented yet
+     * verify the first line and exception are the same. if yes, stack traces are correlated
      * @param stackTrace1
      * @param stackTrace2
      * @return

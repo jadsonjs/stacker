@@ -71,7 +71,7 @@ public class Rule1 extends SimplificationChain {
      *
      * starts with \n or \t 0 or more times "at" space
      */
-    final static String REGEX_STACK_TRACE_AT = "^[\\n\\t]+at\\s.*";
+    final static String REGEX_STACK_TRACE_AT = "^[\\n\\t]*\\s+at\\s+.*[\\n\\t]*";
 
     /**
      * if we will recovery only caused by lines
@@ -180,6 +180,11 @@ public class Rule1 extends SimplificationChain {
             }
         }
 
+        if(openCauseBy) {
+            causedMap.put(causedCount, tempLines);
+            openCauseBy = false;
+        }
+
         // now return the lines in inverse order
         StringBuilder sb = new StringBuilder();
 
@@ -209,7 +214,7 @@ public class Rule1 extends SimplificationChain {
      * @param line
      */
     private void applyPackageFilter(List<String> lines, String line) {
-        if (line.matches(REGEX_STACK_TRACE_AT)) {
+        if (line.matches(REGEX_STACK_TRACE_AT)) {  // just lines starting with "at br.com..." have packages
 
             if (this.isExcludingPackage){
                 if (line.contains(packageExclude)) {
@@ -222,6 +227,7 @@ public class Rule1 extends SimplificationChain {
                     lines.add(line);
                 }
                 return;
+
             }
 
             lines.add(line);
@@ -230,6 +236,5 @@ public class Rule1 extends SimplificationChain {
             lines.add(line);
         }
     }
-
 
 }
