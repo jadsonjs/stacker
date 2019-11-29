@@ -43,7 +43,7 @@ public class Rule0Test {
             "        at com.example.myproject.Book.getTitle(Book.java:10)\n " +
             "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n";
 
-    String s2 = "Exception in thread \"main\" java.lang.NullPointerException\n" +
+    String s2 = "Exception in thread main java.lang.NullPointerException\n" +
             " at com.example.myproject.Book.getTitle(Book.java)\n" +
             " at com.example.myproject.Author.getBookTitles(Author.java)\n";
 
@@ -93,6 +93,15 @@ public class Rule0Test {
             "\tat javax.servlet.http.httpservlet.service(httpservlet.java)\n" +
             "\tat org.apache.jasper.servlet.jspservletwrapper.service(jspservletwrapper.java)\n";
 
+
+    String s5 = "\"\"Exception in thread \"main\" java.lang.NullPointerException\n" +
+            "        at com.example.myproject.Book.getTitle(Book.java:10)\"\"\"\"\n " +
+            "        at com.example.myproject.Author.getBookTitles(Author.java:25)\n";
+
+    String s6 = "Exception in thread main java.lang.NullPointerException\n" +
+            " at com.example.myproject.Book.getTitle(Book.java)\n" +
+            " at com.example.myproject.Author.getBookTitles(Author.java)\n";
+
     @Test
     public void testSimplification() {
         Rule0 r0 = new Rule0();
@@ -104,5 +113,12 @@ public class Rule0Test {
         Rule0 r0 = new Rule0();
         Assert.assertEquals(s4, r0.simplify(s3) );
     }
+
+    @Test
+    public void testSimplificationWithQuotationMarks() {
+        Rule0 r0 = new Rule0();
+        Assert.assertEquals(s6, r0.simplify(s5) );
+    }
+
 
 }

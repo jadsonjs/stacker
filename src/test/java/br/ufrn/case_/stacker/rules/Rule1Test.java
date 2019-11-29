@@ -133,6 +133,24 @@ public class Rule1Test {
             "\tat br.com.system.ensino.negocio.processadorcalculahistorico.execute(processadorcalculahistorico.java)\n";
 
 
+
+
+    String inputStackTraceWithQuotationMarks =
+            "javax.servlet.servletexception: #{ matriculaungraduated.telainstrucoes}: java.lang.nullpointerexception" +
+                    "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+                    "\n\t... 52 more" +
+                    "\ncaused by: java.lang.nullpointerexception" + // top frame is here
+                    "\n\t\"\"\"\"at br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)\"\"" +
+                    "\n\t... 53 more";
+
+    String outStackTraceWithQuotationMarks =
+            "caused by: java.lang.nullpointerexception" + // top frame is here
+                    "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:237)" +
+                    "\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception" +
+                    "\n";
+
+
+
     /**
      * Test organization of stack trace eliminating not important information
      */
@@ -175,5 +193,15 @@ public class Rule1Test {
     public void testPackageFilter4() {
         Assert.assertEquals(outputStackTracePackageFilter3,
                 new Rule1(true, "br.com.system").simplify(inputStackTracePackageFilter3));
+    }
+
+
+    /**
+     * Test return only br.com.system packages
+     */
+    @Test
+    public void testPackageFilterWithQuotationMarks() {
+        Assert.assertEquals(outStackTraceWithQuotationMarks,
+                new Rule1(true, "br.com.system").simplify(inputStackTraceWithQuotationMarks));
     }
 }

@@ -39,9 +39,10 @@ public class Rule0 extends SimplificationChain {
     @Override
     public String simplify(String stackTrace) {
         return stackTrace
-                .replaceAll("[ ]+", " ")
-                .replaceAll(":\\d+", "")
-                .replaceAll("\\d+", "");
+                .replaceAll("[ ]+", " ") // normalize spaces
+                .replaceAll("\"+",  "")  // remove all " inside string
+                .replaceAll(":\\d+", "") // remove liner number
+                .replaceAll("\\d+", ""); // remove any digit
     }
 
 

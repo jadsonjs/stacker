@@ -44,6 +44,7 @@ import org.junit.runners.Suite;
         Rule2Test.class,
         Rule3Test.class,
         Rule4Test.class,
+        Rule01Rule10Test.class,
         Rule0123Test.class,
         RealAndCompleteTest.class,
         Rule01234Test.class})

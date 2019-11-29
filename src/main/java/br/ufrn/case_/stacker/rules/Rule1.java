@@ -61,10 +61,10 @@ public class Rule1 extends SimplificationChain {
 
 
     /*
-     * find string that starts with: "... 53 more"
-     * start with * ... space "n digits" space "more"
+     * find string that starts with: "... 53 more" or "...  more"
+     * start with any "character zero or more times" ... space "zero or more digits" space "more" "any character"
      */
-    final static String REGEX_STACK_TRACE_MORE = "^.*\\.\\.\\.+\\s\\d+\\smore.*";
+    final static String REGEX_STACK_TRACE_MORE = "^.*\\.\\.\\.+\\s\\d*\\smore.*";
 
     /**
      * find the sring that starts with: \n\tat org.apache.catalina.core.
@@ -159,6 +159,9 @@ public class Rule1 extends SimplificationChain {
         boolean openCauseBy = false;
 
         for (String line : lines){
+
+            line = line.replaceAll("\"+",  "");
+
             if(line.startsWith("caused by:")){
                 openCauseBy = true;
                 causedCount++;
