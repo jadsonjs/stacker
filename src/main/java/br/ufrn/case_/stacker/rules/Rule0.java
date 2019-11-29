@@ -34,7 +34,7 @@ package br.ufrn.case_.stacker.rules;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule0 extends SimplificationChain {
+public final class Rule0 extends SimplificationChain {
 
     @Override
     public String simplify(String stackTrace) {

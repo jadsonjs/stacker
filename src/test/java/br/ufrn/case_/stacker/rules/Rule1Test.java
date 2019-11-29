@@ -32,6 +32,10 @@ package br.ufrn.case_.stacker.rules;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Test for Rule0.  that organizer the "caused by" and remove lines not necessary.
  */
@@ -204,4 +208,35 @@ public class Rule1Test {
         Assert.assertEquals(outStackTraceWithQuotationMarks,
                 new Rule1(true, "br.com.system").simplify(inputStackTraceWithQuotationMarks));
     }
+
+
+    /**
+     * Test return only br.com.system packages
+     */
+    @Test
+    public void testApplyLineNoFilter() {
+        Rule1 rule1 = new Rule1(true, "br.com.system");
+
+        List<String> lines = new ArrayList<>();
+        String line = "\tat javax.faces.webapp.facesservlet.service(facesservlet.java:671)";
+        rule1.applyPackageFilter(lines, line);
+
+        Assert.assertEquals(0, lines.size());
+    }
+
+
+    /**
+     * Test return only br.com.system packages
+     */
+    @Test
+    public void testApplyLineFilter() {
+        Rule1 rule1 = new Rule1(true, "br.com.system");
+
+        List<String> lines = new ArrayList<>();
+        String line = "\tat br.com.system.arq.filtros.systemredirectfilter.dofilte(...)";
+        rule1.applyPackageFilter(lines, line);
+
+        Assert.assertEquals(1, lines.size());
+    }
+
 }

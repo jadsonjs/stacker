@@ -60,7 +60,7 @@ import java.util.List;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule2 extends CorrelationChain {
+public final class Rule2 extends CorrelationChain {
 
 
     @Override

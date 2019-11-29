@@ -57,7 +57,7 @@ import java.util.*;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule1 extends SimplificationChain {
+public final class Rule1 extends SimplificationChain {
 
 
     /*
@@ -216,7 +216,7 @@ public class Rule1 extends SimplificationChain {
      * @param lines
      * @param line
      */
-    private void applyPackageFilter(List<String> lines, String line) {
+    public void applyPackageFilter(List<String> lines, String line) {
         if (line.matches(REGEX_STACK_TRACE_AT)) {  // just lines starting with "at br.com..." have packages
 
             if (this.isExcludingPackage){

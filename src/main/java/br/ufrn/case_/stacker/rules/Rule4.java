@@ -36,7 +36,7 @@ package br.ufrn.case_.stacker.rules;
  *
  * Jadson Santos - jadsonjs@gmail.com
  */
-public class Rule4 extends CorrelationChain {
+public final class Rule4 extends CorrelationChain {
 
     @Override
     public boolean isCorrelated(String stackTrace1, String stackTrace2) {
