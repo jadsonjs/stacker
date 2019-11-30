@@ -29,9 +29,7 @@
  */
 package br.ufrn.case_.stacker.rules;
 
-import br.ufrn.case_.stacker.rules.Rule0;
-import br.ufrn.case_.stacker.rules.Rule1;
-import br.ufrn.case_.stacker.rules.SimplificationChain;
+import br.ufrn.case_.stacker.chains.SimplificationChain;
 import org.junit.Assert;
 import org.junit.Test;
 

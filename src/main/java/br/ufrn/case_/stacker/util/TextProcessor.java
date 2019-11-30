@@ -41,7 +41,7 @@ import java.util.List;
 public class TextProcessor {
 
     /**
-     * Split a text by '\n' character
+     * Split a text by '\n' character or text '\\n'
      *
      * @param inputStackTrace
      * @return

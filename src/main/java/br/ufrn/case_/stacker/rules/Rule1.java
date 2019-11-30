@@ -29,6 +29,8 @@
  */
 package br.ufrn.case_.stacker.rules;
 
+import br.ufrn.case_.stacker.chains.SimplificationChain;
+import br.ufrn.case_.stacker.regex.Regex;
 import br.ufrn.case_.stacker.util.TextProcessor;
 
 import java.util.*;
@@ -59,19 +61,6 @@ import java.util.*;
  */
 public final class Rule1 extends SimplificationChain {
 
-
-    /*
-     * find string that starts with: "... 53 more" or "...  more"
-     * start with any "character zero or more times" ... space "zero or more digits" space "more" "any character"
-     */
-    final static String REGEX_STACK_TRACE_MORE = "^.*\\.\\.\\.+\\s\\d*\\smore.*";
-
-    /**
-     * find the sring that starts with: \n\tat org.apache.catalina.core.
-     *
-     * starts with \n or \t 0 or more times "at" space
-     */
-    final static String REGEX_STACK_TRACE_AT = "^[\\n\\t]*\\s+at\\s+.*[\\n\\t]*";
 
     /**
      * if we will recovery only caused by lines
@@ -166,7 +155,7 @@ public final class Rule1 extends SimplificationChain {
                 openCauseBy = true;
                 causedCount++;
             }
-            if(line.matches(REGEX_STACK_TRACE_MORE)){
+            if(line.matches(Regex.STACK_TRACE_MORE)){
                 openCauseBy = false;
             }
 
@@ -217,9 +206,9 @@ public final class Rule1 extends SimplificationChain {
      * @param line
      */
     public void applyPackageFilter(List<String> lines, String line) {
-        if (line.matches(REGEX_STACK_TRACE_AT)) {  // just lines starting with "at br.com..." have packages
+        if (line.matches(Regex.STACK_TRACE_AT)) {  // just lines starting with "at br.com..." have packages
 
-            if (this.isExcludingPackage){
+            if (this.isExcludingPackage) {
                 if (line.contains(packageExclude)) {
                     return;
                 }

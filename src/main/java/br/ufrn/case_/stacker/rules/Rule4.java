@@ -29,6 +29,8 @@
  */
 package br.ufrn.case_.stacker.rules;
 
+import br.ufrn.case_.stacker.chains.CorrelationChain;
+
 /**
  * Simple correlation that verify if the stack traces are exactly the same.
  *

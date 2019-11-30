@@ -29,6 +29,7 @@
  */
 package br.ufrn.case_.stacker.rules;
 
+import br.ufrn.case_.stacker.chains.CorrelationChain;
 import br.ufrn.case_.stacker.util.TextProcessor;
 
 import java.util.List;

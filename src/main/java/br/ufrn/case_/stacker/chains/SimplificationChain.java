@@ -27,7 +27,7 @@
  * AbstractRuleChain
  * 08/11/19
  */
-package br.ufrn.case_.stacker.rules;
+package br.ufrn.case_.stacker.chains;
 
 /**
  * This is abstract class to stack trance simplification that implements the pattern Chain of Responsibility

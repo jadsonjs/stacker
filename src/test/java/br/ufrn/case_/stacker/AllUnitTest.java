@@ -29,6 +29,7 @@
  */
 package br.ufrn.case_.stacker;
 
+import br.ufrn.case_.stacker.regex.RegexTest;
 import br.ufrn.case_.stacker.rules.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -39,6 +40,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+        RegexTest.class,
         Rule0Test.class,
         Rule1Test.class,
         Rule2Test.class,

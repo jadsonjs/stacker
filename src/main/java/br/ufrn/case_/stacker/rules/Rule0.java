@@ -29,6 +29,9 @@
  */
 package br.ufrn.case_.stacker.rules;
 
+import br.ufrn.case_.stacker.chains.SimplificationChain;
+import br.ufrn.case_.stacker.regex.Regex;
+
 /**
  *  Simplify the stack trace eliminating number of lines and spaces
  *
@@ -39,10 +42,10 @@ public final class Rule0 extends SimplificationChain {
     @Override
     public String simplify(String stackTrace) {
         return stackTrace
-                .replaceAll("[ ]+", " ") // normalize spaces
-                .replaceAll("\"+",  "")  // remove all " inside string
-                .replaceAll(":\\d+", "") // remove liner number
-                .replaceAll("\\d+", ""); // remove any digit
+                .replaceAll(Regex.ONE_MORE_SPACES, " ") // normalize spaces
+                .replaceAll(Regex.QUOTATION_MARK,  "")  // remove all " inside string
+                .replaceAll(Regex.NUMBER_OF_LINES, "") // remove liner number
+                .replaceAll(Regex.ONE_MORE_DIGIT,  ""); // remove any digit
     }
 
 

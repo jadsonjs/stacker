@@ -27,7 +27,7 @@
  * RuleComparation
  * 14/11/19
  */
-package br.ufrn.case_.stacker.rules;
+package br.ufrn.case_.stacker.chains;
 
 /**
  * Abstract classe to correlate to stack traces
