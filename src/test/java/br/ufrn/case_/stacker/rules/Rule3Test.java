@@ -95,6 +95,17 @@ public class Rule3Test {
             "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telaCadastroAluno(matriculagraduacaombean.java:1982)" +
             "\n\t... 53 more";
 
+    String s5 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception"+
+            "\ncaused by: java.lang.nullpointerexception" + // top frame is here
+            "\n\tat br.com.system.ensino.tecnico.dao.turmaentradatecnicodao.findturmasentradadisponiveisimdnew(turmaentradatecnicodao.java:2037)" +
+            "\n\tat br.com.system.ensino.graduacao.jsf.matriculagraduacaombean.telainstrucoes(matriculagraduacaombean.java:1982)" +
+            "\n\tat sun.reflect.generatedmethodaccessor2828.invoke(unknown source)" +
+            "\n\tat sun.reflect.delegatingmethodaccessorimpl.invoke(delegatingmethodaccessorimpl.java:43)";
+
+    String s6 ="\ncaused by: javax.faces.el.evaluationexception: java.lang.nullpointerexception";
+
+
+
     @Test
     public void testVerifyTopFrame() {
         Rule3 r3 = new Rule3();
@@ -119,6 +130,15 @@ public class Rule3Test {
     public void testVerifyTopFrameDifferentFileName() {
         Rule3 r3 = new Rule3();
         Assert.assertFalse(r3.isCorrelated(e3, e4));
+    }
+
+    /**
+     * Verify when there is no top frame.
+     */
+    @Test
+    public void testVerifyNoTopFrame() {
+        Rule3 r3 = new Rule3();
+        Assert.assertFalse(r3.isCorrelated(s5, s6));
     }
 
 }

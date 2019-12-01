@@ -109,15 +109,17 @@ public final class Rule3 extends CorrelationChain {
              */
             String secondLine1 = "";
             for(; i < stackTraces1Lines.size() ; i++) {
-                secondLine1 = stackTraces1Lines.get(i);
-                if(secondLine1.contains("at") && secondLine1.contains("(")){
+                String temp = stackTraces1Lines.get(i);
+                if(temp.contains("at") && temp.contains("(")){
+                    secondLine1 = temp;
                     break;
                 }
             }
             String secondLine2 = "";
-            for(; j < stackTraces1Lines.size() ; j++) {
-                secondLine2 = stackTraces2Lines.get(j);
-                if(secondLine2.contains("at") && secondLine2.contains("(")){
+            for(; j < stackTraces2Lines.size() ; j++) {
+                String temp = stackTraces2Lines.get(j);
+                if(temp.contains("at") && temp.contains("(")){
+                    secondLine2 = temp;
                     break;
                 }
             }
@@ -128,11 +130,13 @@ public final class Rule3 extends CorrelationChain {
                  * if line = at com.example.myproject.Book.getTitle(Book.java:170)
                  * file name = at com.example.myproject.Book.getTitle
                  */
-                String fileName1 = secondLine1.substring(0, secondLine1.indexOf("("));
-                String fileName2 = secondLine2.substring(0, secondLine2.indexOf("("));
+                if( ! secondLine1.trim().isEmpty() && ! secondLine2.trim().isEmpty() ) {
+                    String fileName1 = secondLine1.substring(0, secondLine1.indexOf("("));
+                    String fileName2 = secondLine2.substring(0, secondLine2.indexOf("("));
 
-                if(fileName1.equals(fileName2)) {
-                    return true;
+                    if(fileName1.equals(fileName2)) {
+                        return true;
+                    }
                 }
             }
 
